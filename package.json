@@ -1,0 +1,20 @@
+{
+  "name": "final-project-buni-boards",
+  "version": "1.0.0",
+  "description": "Buni Boards Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osu-cs290-sp21/final-project-buni-boards.git"
+  },
+  "author": "Parker Conrad and Alihan Baysal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osu-cs290-sp21/final-project-buni-boards/issues"
+  },
+  "homepage": "https://github.com/osu-cs290-sp21/final-project-buni-boards#readme"
+}
