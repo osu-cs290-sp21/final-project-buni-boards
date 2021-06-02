@@ -130,3 +130,12 @@ animate();
 
 /* ===========================End Three JS=========================== */
 
+let property = document.querySelectorAll('.property')
+
+property.forEach(item => {
+  item.addEventListener('click', event => {
+  console.log(item.id)
+  })
+})
+
+
