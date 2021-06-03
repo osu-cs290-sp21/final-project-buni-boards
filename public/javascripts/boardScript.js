@@ -144,12 +144,27 @@ let property = document.querySelectorAll('.property');
 
 property.forEach(item => {
   item.addEventListener('click', event => {
-  console.log(item.id);
-  // var dimsHtml = Handlebars.template.dimensions(dimensionsTemplate);
-  // var slideMenu = document.querySelector('.slideMenu')
-  // slideMenu.insertAdjacentHTML('beforebegin', dimsHtml)
-  // var customizer = document.getElementById('customizer')
-  // customizer.style.left = '10%';
+  document.querySelector('.slideMenu') ? document.querySelector('.slideMenu').remove() : console.log(item.id);
+  var customizer = document.getElementById('custom')
+  customizer.style.left = "17%";
+  var templateHtml = eval("Handlebars.templates." + `${item.id}()`);
+  var slideMenu = document.querySelector('.test')
+  slideMenu.insertAdjacentHTML('beforebegin', templateHtml)
+
+
+  let dimSlider = document.getElementById('dimSlider');
+  let length = document.getElementById('length')
+  if (dimSlider) {  
+    dimSlider.oninput = function() {
+    length.textContent = inchesToFeet(this.value)
+  }}
+  let closeButton = document.querySelector('.closeButton')
+  closeButton.addEventListener('click', event => {
+    console.log('click')
+    removed = document.querySelector('.slideMenu')
+    removed.remove()
+    customizer.style.left = "0";
+  })
   });
 });
 
@@ -159,10 +174,5 @@ property.forEach(item => {
 /*======================================================================================================*/
 
 /*======================================================================================================*/
-// let dimSlider = document.getElementById('dimSlider');
-// let length = document.getElementById('length')
-// dimSlider.oninput = function() {
-//   length.textContent = inchesToFeet(this.value)
-// }
 
 

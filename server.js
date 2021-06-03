@@ -10,6 +10,10 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
+app.get('/', function(req, res, next){
+  res.status(200).sendFile(path.join(__dirname,'index.html'))
+})
+
 app.get('/build-a-buni', function(req, res, next){
   res.status(200).render('boardBuilder')
 })
