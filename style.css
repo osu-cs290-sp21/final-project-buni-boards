@@ -1,0 +1,27 @@
+#headerLogo {
+  width: auto;
+  height: 150px;
+}
+
+#footerLogo {
+  width: auto;
+  height: 200px;
+}
+
+.navitem {
+  display: inline-block;
+}
+
+.bigPicture {
+  width: 100%;
+  height: auto;
+}
+
+.boardPicture {
+  width: 33%;
+  height: auto;
+}
+
+.navlist {
+  width: 100px;
+}
