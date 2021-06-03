@@ -20,9 +20,9 @@
   <script src="./javascripts/boardScript.js" charset="utf-8" defer></script>
 </head>
 <body>
-  <div class="customizer">
-    <h1 id="board-name">Flyin' Rabbit</h1>
-    <ul class="prop-list">
+  <!-- <div class="customizer">
+    <h1 id="boardName">Flyin' Rabbit</h1>
+    <ul class="propList">
         <li class="properties">
             <a href="#" class="property" id="dimensions">Dimensions</a>
         </li>
@@ -42,10 +42,21 @@
             <a href="#" class="property" id="finish">Finish</a>
         </li>
     </ul>
-  </div>
+  </div> -->
 
-  <div class="test">
-    <p>hello</p>
+  <div class="dimMenu">
+    <h2>length</h2>
+    <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="50" class="slider" id="dimSlider">
+    </div>
+    <div class="slidecontainer">
+      <h2>width</h2>
+      <input type="range" min="1" max="100" value="50" class="slider" id="widthSlider">
+    </div>
+    <div class="slidecontainer">
+      <h2>thickness</h2>
+      <input type="range" min="1" max="100" value="50" class="slider" id="thicknessSlider">
+    </div>
   </div>
   <!-- The canvas element is used to draw the 3D scene -->
   <canvas id="boardCanvas"></canvas>
