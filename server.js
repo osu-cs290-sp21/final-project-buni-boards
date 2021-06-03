@@ -1,6 +1,8 @@
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
+var Fraction = require('fractional').Fraction
+module.exports = Fraction;
 
 var app = express();
 var port = process.env.PORT || 3000;
