@@ -1,19 +1,17 @@
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
-var Fraction = require('fractional').Fraction
-module.exports = Fraction;
 
 var app = express();
 var port = process.env.PORT || 3000;
 
-// app.engine('handlebars', exphbs({defaultLayout: none}));
+app.engine('handlebars', exphbs({defaultLayout: null}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
 app.get('/build-a-buni', function(req, res, next){
-  res.status(200).sendFile(path.join(__dirname, 'public', 'boardBuilder.html'))
+  res.status(200).render('boardBuilder')
 })
 
 app.listen(port, function () {

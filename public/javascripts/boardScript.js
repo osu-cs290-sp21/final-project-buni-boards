@@ -147,9 +147,12 @@ property.forEach(item => {
   });
 });
 
-let Fraction = require('Fraction')
-console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
+// let Fraction = require('Fraction')
+// console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
 
+/*======================================================================================================*/
+
+/*======================================================================================================*/
 let dimSlider = document.getElementById('dimSlider');
 let length = document.getElementById('length')
 dimSlider.oninput = function() {
