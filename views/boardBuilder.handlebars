@@ -1,8 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  {{> 'boardMeta'}}
-<!-- <body>
-  <div class="customizer">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>build a buni</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=Rock+Salt&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./stylesheets/boardStyle.css" media="screen">
+  <!-- The main three.js file -->
+  <script src='https://unpkg.com/three@0.127.0/build/three.js' defer></script>
+
+  <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+  <script src='https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js' defer></script>
+
+  <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
+  <script src='https://threejs.org/examples/js/controls/OrbitControls.js' defer></script>
+
+  <script src="/javascripts/boardScript.js" charset="utf-8" defer></script>
+
+</head>
+<body>
+  <div class="customizer" id="custom">
     <h1 id="boardName">Flyin' Rabbit</h1>
     <ul class="propList">
         <li class="properties">
@@ -24,52 +43,12 @@
             <a href="#" class="property" id="finish">Finish</a>
         </li>
     </ul>
-  </div> -->
-
-  <div class="slideMenu">
-    <h1 class="menuHeader">Dimensions</h1>
-    <div class="slidecontainer">
-      <div class="slideHeader">
-        <h2>length</h2>
-        <p class="size" id="length">5'7</p>
-      </div>
-      <input type="range" min="60" max="84" value="67" class="slider" id="dimSlider">
-    </div>
-    <div class="slidecontainer">
-      <div class="slideHeader">
-        <h2>width</h2>
-        <p class="size" id="width">20"3/4</p>
-      </div>
-      <input type="range" min="10" max="100" value="50" class="slider" id="widthSlider">
-    </div>
-    <div class="slidecontainer">
-      <div class="slideHeader">
-        <h2>thickness</h2>
-        <p class="size">2"1/2</p>
-      </div>
-      <input type="range" min="1" max="100" value="50" class="slider" id="thicknessSlider">
-    </div>
-    <div class="closeAndDownload">
-      <button class="closeButton"><img src="../_possible_photos/close-button.png" alt="close button"></button><!--
-      --><button class="downloadButton"><img src="../_possible_photos/download-button.png" alt="download button"></button>
-    </div>
   </div>
 
-  <!-- <div class="slideMenu">
-    <h1 class="menuHeader">Fins</h1>
-    <div class="fin">
-      <h2>single fin</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <h2>twin fin</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <h2>thruster</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <h2>quad</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <h2>best of both worlds</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-  </div> -->
+  <div class="slideMenu">
+
+  </div>
+
   <!-- The canvas element is used to draw the 3D scene -->
   <canvas id="boardCanvas"></canvas>
 </body>

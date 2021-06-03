@@ -138,12 +138,18 @@ let inchesToFeet = function(inches){
   console.log(feet + "'" + remainder)
   return feet + "'" + remainder
 }
+console.log('test')
 
 let property = document.querySelectorAll('.property');
 
 property.forEach(item => {
   item.addEventListener('click', event => {
   console.log(item.id);
+  // var dimsHtml = Handlebars.template.dimensions(dimensionsTemplate);
+  // var slideMenu = document.querySelector('.slideMenu')
+  // slideMenu.insertAdjacentHTML('beforebegin', dimsHtml)
+  // var customizer = document.getElementById('customizer')
+  // customizer.style.left = '10%';
   });
 });
 
@@ -153,10 +159,10 @@ property.forEach(item => {
 /*======================================================================================================*/
 
 /*======================================================================================================*/
-let dimSlider = document.getElementById('dimSlider');
-let length = document.getElementById('length')
-dimSlider.oninput = function() {
-  length.textContent = inchesToFeet(this.value)
-}
+// let dimSlider = document.getElementById('dimSlider');
+// let length = document.getElementById('length')
+// dimSlider.oninput = function() {
+//   length.textContent = inchesToFeet(this.value)
+// }
 
 
