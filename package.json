@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/osu-cs290-sp21/final-project-buni-boards/issues"
   },
-  "homepage": "https://github.com/osu-cs290-sp21/final-project-buni-boards#readme"
+  "homepage": "https://github.com/osu-cs290-sp21/final-project-buni-boards#readme",
+  "dependencies": {
+    "fractional": "^1.0.0"
+  }
 }

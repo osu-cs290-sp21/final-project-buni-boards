@@ -129,13 +129,30 @@ function animate () {
 animate();
 
 /* ===========================End Three JS=========================== */
+// var Fraction = require('fractional').Fraction
+/* NEEED TO CONFIGURE NPM*/
 
-let property = document.querySelectorAll('.property')
+// console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
+
+let inchesToFeet = function(inches){
+  let feet = Math.floor(inches / 12);
+  let remainder = inches % 12
+  console.log(feet + "'" + remainder)
+  return feet + "'" + remainder
+}
+
+let property = document.querySelectorAll('.property');
 
 property.forEach(item => {
   item.addEventListener('click', event => {
-  console.log(item.id)
-  })
-})
+  console.log(item.id);
+  });
+});
+
+let dimSlider = document.getElementById('dimSlider');
+let length = document.getElementById('length')
+dimSlider.oninput = function() {
+  length.textContent = inchesToFeet(this.value)
+}
 
 
