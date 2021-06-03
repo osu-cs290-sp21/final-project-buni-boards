@@ -6,45 +6,61 @@
     <title>Buni Boards</title>
 
     <link rel="stylesheet" href="style.css" media="screen">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="index.js" charset="utf-8" defer></script>
 
   </head>
 
   <body>
 
     <header>
-      <!-- The <i> tag below includes the lizard hand icon from Font Awesome.  Do not directly style this element. -->
-      <a href="#"><img src="./_possible_photos/buni-logo-transparent.png" alt="Logo" id="headerLogo"></a>
+      <!--
+      <div class="navbar" id="myNavbar">
+        <img class="logo" src="./_possible_photos/buni-logo-transparent.png">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"><i/>
+        </a>
+        <a href="#">Build a Buni</a>
+        <a href="#">Blog</a>
+        <a href="#">Meet The Team</a>
+        <a href="#">About</a>
+        <a href="#">Home</a>
+      </div>
+    -->
 
-      <!--<nav class="navbar">-->
-        <ul class="navlist">
-          <li class="navitem navlink active"><a href="#">Home</a></li>
-          <li class="navitem navlink"><a href="#">About</a></li>
-          <li class="navitem navlink"><a href="#">Meet The Team</a></li>
-          <li class="navitem navlink"><a href="#">Blog</a></li>
-          <li class="navitem navlink"><a href="#">Build a Buni</a></li>
-        </ul>
-      <!--</nav>-->
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+  <img class="logo" src="./photos/buniLogo.png">
+</div>
     </header>
 
     <main>
-      <img src="./_possible_photos/bigPhoto1.jpg" alt="Big Photo 1" class="bigPicture">
-      <img src="./_possible_photos/surfboard1.png" alt="Surf Board 1" class="boardPicture">
-      <img src="./_possible_photos/surfboard2.png" alt="Surf Board 2" class="boardPicture">
-      <img src="./_possible_photos/surfboard3.png" alt="Surf Board 3" class="boardPicture">
-      <img src="./_possible_photos/bigPhoto2.jpg" alt="Big Photo 2" class="bigPicture">
-    </main>
+      <div class="images">
+      <img src="./photos/photo1.jpg" alt="Big Photo 1" class="bigPicture">
+      <img src="./photos/surfboard1.png" alt="Surf Board 1" class="boardPicture">
+      <img src="./photos/surfboard2.png" alt="Surf Board 2" class="boardPicture">
+      <img src="./photos/surfboard3.png" alt="Surf Board 3" class="boardPicture">
+      <img src="./photos/photo2.jpg" alt="Big Photo 2" class="bigPicture">
+    </div>
+      <footer>
+      <div class="fnavbar">
+        <img class="logo2" src="./photos/flyinRabbit.png">
+        <a href="#">Contact Us</a>
+        <a href="#">Meet The Team</a>
+        <a href="#">Blog</a>
 
-    <footer>
-      <nav class="navbar">
-        <ul class="navlist">
-          <li class="navitem navlink active"><a href="#">Blog</a></li>
-          <li class="navitem navlink"><a href="#">Meet The Team</a></li>
-          <li class="navitem navlink"><a href="#">Contact Us</a></li>
-        </ul>
-
-        <a href="#"><img src="./_possible_photos/flyinrabbit-transparent.png" alt="Logo" id="footerLogo"></a>
+      </div>
     </footer>
-
   </body>
 
 </html>
