@@ -1,6 +1,5 @@
 /* ===========================Three JS=========================== */
 const MODEL_PATH = './javascripts/flyinRabbitV4.glb';
-var surfboard;
 
 const BACKGROUND_COLOR = 0xf1f1f1;
 
@@ -33,7 +32,7 @@ const INITIAL_MAP = [
   const loader = new THREE.GLTFLoader();
 
   loader.load(MODEL_PATH, function(gltf) {
-    surfboard = gltf.scene
+    const surfboard = gltf.scene
     surfboard.traverse((o) => {
       if (o.isMesh) {
         o.castShadow = true;
@@ -142,8 +141,6 @@ let inchesToFeet = function(inches){
 console.log('test')
 
 let property = document.querySelectorAll('.property');
-var selection;
-var saved_color = 'EFF2F2';
 
 property.forEach(item => {
   item.addEventListener('click', event => {
@@ -154,96 +151,13 @@ property.forEach(item => {
   var slideMenu = document.querySelector('.test')
   slideMenu.insertAdjacentHTML('beforebegin', templateHtml)
 
-if(item.id == 'dims'){
+
   let dimSlider = document.getElementById('dimSlider');
   let length = document.getElementById('length')
   if (dimSlider) {  
     dimSlider.oninput = function() {
     length.textContent = inchesToFeet(this.value)
   }}
-}
-else if (item.id == 'colors'){
-  const dropButtons = document.querySelectorAll(".dropButton");
-  const dropDownColors = document.querySelector('.dropDownColors')
-  dropButtons.forEach(dropButton => {
-    dropButton.addEventListener('click', event => {
-      console.log(dropButton.textContent.split(" ")[0].toLowerCase())
-      let removedChooser = dropButton.parentElement.querySelector('.colorChooser')
-      if (removedChooser){
-        removedChooser.remove()
-      }
-      else{
-        let newColors = document.createElement('div')
-        newColors.classList.add("colorChooser")
-        newColors.setAttribute("id", `${dropButton.textContent.split(" ")[0].toLowerCase()}`)
-        dropButton.parentElement.append(newColors);
-        buildColors(colors);
-        const allColors = document.querySelectorAll(".color");
-        for (const colortest of allColors) {
-        colortest.addEventListener('click', function(e){
-          console.log("colortest:" ,colortest.parentElement.id)
-          selection = colortest.parentElement.id
-          let color = colors[parseInt(e.target.dataset.key)];
-          let new_mtl;
-          if (colortest.parentElement.id == 'deck'){
-            console.log('in deck')
-            saved_color = color.color
-            var deck_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + color.color),
-              shininess: color.shininess ? color.shininess : 10
-            });
-            if (typeof bottom_mtl == 'undefined'){
-              var bottom_mtl = INITIAL_MTL
-            }
-
-          }
-          else if(colortest.parentElement.id == 'bottom') {
-            console.log('in bottom')
-            var bottom_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + color.color),
-              shininess: color.shininess ? color.shininess : 10      
-            });
-            var deck_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + saved_color),
-              shininess: 10});
-          }
-
-          else if(colortest.parentElement.id == 'full') {
-            var bottom_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + color.color),
-              shininess: color.shininess ? color.shininess : 10      
-            });
-            var deck_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + color.color),
-              shininess: 10});
-          }
-         
-          surfboard.traverse((o) => {
-            var saved_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + '131417'),
-              shininess: 10});
-          // console.log("type: ", type)
-          if ((o.isMesh && o.nameID != null)) {
-            if (o.nameID == 'bottom') {
-                console.log('bottomFirst')
-                 o.material = bottom_mtl;
-              }
-            if (o.nameID == 'deck'){
-              console.log('deckFirst')
-              o.material = deck_mtl;
-            }
-          }
-        });
-        }); 
-        const dropButtons = document.querySelectorAll(".dropButton");
-        const dropDownColors = document.querySelector('.dropDownColors')
-        }
-      }
-    })
-  })
-
-}
-
   let closeButton = document.querySelector('.closeButton')
   closeButton.addEventListener('click', event => {
     console.log('click')
@@ -254,179 +168,14 @@ else if (item.id == 'colors'){
   });
 });
 
-const colors = [
-  {
-    color: '131417'  
-},
-{
-    color: '374047'  
-},
-{
-    color: '5f6e78'  
-},
-{
-    color: '7f8a93'  
-},
-{
-    color: '97a1a7'  
-},
-{
-    color: 'acb4b9'  
-},
-{
-    color: 'DF9998',
-},
-{
-    color: '7C6862'
-},
-{
-    color: 'A3AB84'
-},
-{
-    color: 'D6CCB1'
-},
-{
-    color: 'F8D5C4'
-},
-{
-    color: 'A3AE99'
-},
-{
-    color: 'EFF2F2'
-},
-{
-    color: 'B0C5C1'
-},
-{
-    color: '8B8C8C'
-},
-{
-    color: '565F59'
-},
-{
-    color: 'CB304A'
-},
-{
-    color: 'FED7C8'
-},
-{
-    color: 'C7BDBD'
-},
-{
-    color: '3DCBBE'
-},
-{
-    color: '264B4F'
-},
-{
-    color: '389389'
-},
-{
-    color: '85BEAE'
-},
-{
-    color: 'F2DABA'
-},
-{
-    color: 'F2A97F'
-},
-{
-    color: 'D85F52'
-},
-{
-    color: 'D92E37'
-},
-{
-    color: 'FC9736'
-},
-{
-    color: 'F7BD69'
-},
-{
-    color: 'A4D09C'
-},
-{
-    color: '4C8A67'
-},
-{
-    color: '25608A'
-},
-{
-    color: '75C8C6'
-},
-{
-    color: 'F5E4B7'
-},
-{
-    color: 'E69041'
-},
-{
-    color: 'E56013'
-},
-{
-    color: '11101D'
-},
-{
-    color: '630609'
-},
-{
-    color: 'C9240E'
-},
-{
-    color: 'EC4B17'
-},
-{
-    color: '281A1C'
-},
-{
-    color: '4F556F'
-},
-{
-    color: '64739B'
-},
-{
-    color: 'CDBAC7'
-},
-{
-    color: '946F43'
-},
-{
-    color: '66533C'
-},
-{
-    color: '173A2F'
-},
-{
-    color: '153944'
-},
-{
-    color: '27548D'
-},
-{
-    color: '438AAC'
-}
-  ]
+let colorChooser = document.querySelector('.colorChooser');
 
 
-function buildColors(colors) {
-  console.log('bop ')
-  let colorChooser = document.querySelectorAll('.colorChooser');
+// let Fraction = require('Fraction')
+// console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
 
-  colorChooser.forEach(section => {
-    for (let [i, color] of colors.entries()) {
-      let colorBlob = document.createElement('button');
-      colorBlob.classList.add('color');
-  
-        colorBlob.style.background = "#" + color.color;
-  
-      colorBlob.setAttribute('data-key', i);
-      section.append(colorBlob);
-    }
-  })
-}
+/*======================================================================================================*/
 
-
-
-
+/*======================================================================================================*/
 
 

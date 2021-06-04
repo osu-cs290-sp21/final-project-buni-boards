@@ -26,6 +26,9 @@ body {
 }
 
 /* Add a black background color to the top navigation */
+header{
+  height: 100px;
+}
 .topnav {
   background-color:	black;
   overflow: hidden;

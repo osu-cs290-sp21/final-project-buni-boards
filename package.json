@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "handlebars views/partials/dims.handlebars -f public/javascripts/dimsTemplate.js && handlebars views/partials/fins.handlebars -f public/javascripts/finsTemplate.js && handlebars views/partials/contours.handlebars -f public/javascripts/contoursTemplate.js && handlebars views/partials/rocker.handlebars -f public/javascripts/rockerTemplate.js && handlebars views/partials/colors.handlebars -f public/javascripts/colorsTemplate.js &&handlebars views/partials/finish.handlebars -f public/javascripts/finishTemplate.js",
+    "build": "handlebars views/fins.handlebars views/dims.handlebars views/contours.handlebars views/colors.handlebars views/finish.handlebars views/rocker.handlebars -p -f public/javascripts/templates.js",
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon --watch views server.js",
     "prestart": "npm run build",
     "predev": "npm run build"
   },
