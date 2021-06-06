@@ -1,5 +1,6 @@
 /* ===========================Three JS=========================== */
 const MODEL_PATH = './javascripts/flyinRabbitV4.glb';
+const DRAG_NOTICE = document.getElementById('js-drag-notice');
 var surfboard;
 
 const BACKGROUND_COLOR = 0x000000;
@@ -21,6 +22,7 @@ const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.inner
 const cameraFar = 5
 camera.position.z = cameraFar;
 camera.position.x = 0;
+var loaded = false;
 
 const INITIAL_MTL = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 10 } );
 
@@ -125,9 +127,24 @@ function animate () {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
   }
+  if (surfboard != null && loaded == false) {
+    initialRotation();
+    DRAG_NOTICE.classList.add('start');
+  }
 }
 
 animate();
+
+let initRotate = 0;
+
+function initialRotation() {
+  initRotate++;
+if (initRotate <= 120) {
+    surfboard.rotation.y += Math.PI / 60;
+  } else {
+    loaded = true;
+  }
+}
 
 /* ===========================End Three JS=========================== */
 // var Fraction = require('fractional').Fraction
