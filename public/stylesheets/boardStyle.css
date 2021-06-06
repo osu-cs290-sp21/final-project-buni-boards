@@ -213,28 +213,6 @@ a:visited{
 .fin p{
   font-size: 0.7vw;
 }
- 
-.saveBoard{
-  background-color: lightblue;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  margin-bottom: 2%;
-  margin-right: 3%;
-}
-
-.saveBoard:hover{
-  transform: scale(1.2);
-  filter: brightness(85%);
-}
-
-.saveBoard:active{
-  transform: scale(1.3);
-}
 
 .headAndCheck{
   display: flex;
@@ -293,3 +271,31 @@ input{
   }
 }
 
+.bottomButtons button{
+  background-color: lightblue;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+}
+
+.saveBoard{
+  margin-bottom: 2%;
+  margin-right: 8%;
+}
+.homeButton{
+  margin-bottom: 2%;
+  margin-right: 3%;
+}
+
+.bottomButtons button:hover{
+  transform: scale(1.2);
+  filter: brightness(85%);
+}
+
+.bottomButtons button:active{
+  transform: scale(1.3);
+}
