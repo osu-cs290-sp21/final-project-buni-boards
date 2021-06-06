@@ -2,7 +2,7 @@
 const MODEL_PATH = './javascripts/flyinRabbitV4.glb';
 var surfboard;
 
-const BACKGROUND_COLOR = 0xf1f1f1;
+const BACKGROUND_COLOR = 0x000000;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(BACKGROUND_COLOR);
