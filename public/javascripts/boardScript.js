@@ -162,6 +162,7 @@ if(item.id == 'dims'){
     length.textContent = inchesToFeet(this.value)
   }}
 }
+ /*=======Colors========*/
 else if (item.id == 'colors'){
   const dropButtons = document.querySelectorAll(".dropButton");
   const dropDownColors = document.querySelector('.dropDownColors')
@@ -222,7 +223,6 @@ else if (item.id == 'colors'){
             var saved_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + '131417'),
               shininess: 10});
-          // console.log("type: ", type)
           if ((o.isMesh && o.nameID != null)) {
             if (o.nameID == 'bottom') {
                 console.log('bottomFirst')
@@ -241,8 +241,9 @@ else if (item.id == 'colors'){
       }
     })
   })
-
 }
+/*=======End Colors========*/
+
 
   let closeButton = document.querySelector('.closeButton')
   closeButton.addEventListener('click', event => {
