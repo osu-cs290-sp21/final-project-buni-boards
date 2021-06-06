@@ -27,7 +27,7 @@ app.get('/blog', function(req, res, next) {
 })
 
 app.get('/build-a-buni', function(req, res, next){
-  res.status(200).render('boardBuilder')
+  res.status(200).render('boardBuilder', {layout: false});
 })
 
 app.listen(port, function () {
