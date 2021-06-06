@@ -5,13 +5,25 @@ var exphbs = require('express-handlebars');
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.engine('handlebars', exphbs({defaultLayout: null}));
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
 app.get('/', function(req, res, next){
-  res.status(200).sendFile(path.join(__dirname,'index.html'))
+  res.status(200).render('homepage');
+})
+
+app.get('/meet-the-team', function(req, res, next) {
+  res.status(200).render('aboutpage');
+})
+
+app.get('/contact-us', function(req, res, next) {
+  res.status(200).render('contactpage');
+})
+
+app.get('/blog', function(req, res, next) {
+  res.status(200).render('blogpage');
 })
 
 app.get('/build-a-buni', function(req, res, next){
