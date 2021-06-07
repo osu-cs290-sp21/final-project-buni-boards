@@ -7,3 +7,7 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+
+function show_alert() {
+    alert("Thank you for contacting us!");
+}
