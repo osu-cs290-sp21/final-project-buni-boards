@@ -153,6 +153,45 @@ if (initRotate <= 120) {
 /* ===========================End Three JS=========================== */
 // var Fraction = require('fractional').Fraction
 // console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
+let contour = document.getElementById('contour')
+let fins = document.getElementById('fins')
+let rockers = document.getElementById('rocker')
+let finishes = document.getElementById('finish')
+
+
+/* test */
+var ready = document.getElementById('ready')
+ready.addEventListener('click', event =>{
+  var deckColor = document.getElementById('deckColor').textContent
+  var bottomColor = document.getElementById('bottomColor').textContent
+  console.log('deck: ', deckColor)
+
+  console.log('yes')
+
+  var bottom_mtl = new THREE.MeshPhongMaterial({
+    color: parseInt('0x' + bottomColor),
+    shininess: 10      
+  });
+
+  var deck_mtl = new THREE.MeshPhongMaterial({
+    color: parseInt('0x' + deckColor),
+    shininess: 10      
+  });
+
+  surfboard.traverse((o) => {
+    if ((o.isMesh && o.nameID != null)) {
+      if (o.nameID == 'bottom') {
+          console.log('bottomFirst')
+           o.material = bottom_mtl;
+        }
+      if (o.nameID == 'deck'){
+        console.log('deckFirst')
+        o.material = deck_mtl;
+      }
+    }
+  });
+})
+/* test */
 
 let inchesToFeet = function(inches){
   let feet = Math.floor(inches / 12);
@@ -183,10 +222,69 @@ if(item.id == 'dims'){
     length.textContent = inchesToFeet(this.value)
   }}
 }
+
+else if (item.id == 'contours'){
+  let allContours = document.querySelectorAll('.contour')
+  let name = document.getElementById('contour')
+  allContours.forEach(item => {
+    console.log("item:", item.childNodes[1].childNodes[3].id)
+    console.log("name:" , name.textContent)
+    console.log('check: ', item.childNodes[1].childNodes[3].id == name.textContent)
+    if (item.childNodes[1].childNodes[3].id == name.textContent){
+      console.log("inside check")
+      document.getElementById(`${name.textContent}`).checked = true
+    }
+  })
+}
+
+else if (item.id == 'fins'){
+  let allFins = document.querySelectorAll('.fin')
+  let fins = document.getElementById('fins')
+  allFins.forEach(item => {
+    console.log("item:", item.childNodes[1].childNodes[3].id)
+    console.log("fins:" , fins.textContent)
+    console.log('check: ', item.childNodes[1].childNodes[3].id == fins.textContent)
+    if (item.childNodes[1].childNodes[3].id == fins.textContent){
+      console.log("inside check")
+      document.getElementById(`${fins.textContent}`).checked = true
+    }
+  })
+}
+
+else if (item.id == 'rocker'){
+  let allRockers = document.querySelectorAll('.rocker')
+  let rockers = document.getElementById('rocker')
+  allRockers.forEach(item => {
+    console.log("item:", item.childNodes[1].childNodes[3].id)
+    console.log("fins:" , rockers.textContent)
+    console.log('check: ', item.childNodes[1].childNodes[3].id == rockers.textContent)
+    if (item.childNodes[1].childNodes[3].id == rockers.textContent){
+      console.log("inside check")
+      document.getElementById(`${rockers.textContent}`).checked = true
+    }
+  })
+}
+
+else if (item.id == 'finish'){
+  let allFinishes = document.querySelectorAll('.finish')
+  let finishes = document.getElementById('finish')
+  allFinishes.forEach(item => {
+    console.log("item:", item.childNodes[1].childNodes[3].id)
+    console.log("fins:" , finishes.textContent)
+    console.log('check: ', item.childNodes[1].childNodes[3].id == finishes.textContent)
+    if (item.childNodes[1].childNodes[3].id == finishes.textContent){
+      console.log("inside check")
+      document.getElementById(`${finishes.textContent}`).checked = true
+    }
+  })
+}
  /*=======Colors========*/
+
+
+
 else if (item.id == 'colors'){
   const dropButtons = document.querySelectorAll(".dropButton");
-  const dropDownColors = document.querySelector('.dropDownColors')
+  const dropDownColors = document.querySelector('.dropDownColors');
   dropButtons.forEach(dropButton => {
     dropButton.addEventListener('click', event => {
       console.log(dropButton.textContent.split(" ")[0].toLowerCase())
@@ -209,6 +307,7 @@ else if (item.id == 'colors'){
           let new_mtl;
           if (colortest.parentElement.id == 'deck'){
             console.log('in deck')
+            console.log('color: ', color.color)
             saved_color = color.color
             var deck_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
@@ -241,9 +340,6 @@ else if (item.id == 'colors'){
           }
          
           surfboard.traverse((o) => {
-            var saved_mtl = new THREE.MeshPhongMaterial({
-              color: parseInt('0x' + '131417'),
-              shininess: 10});
           if ((o.isMesh && o.nameID != null)) {
             if (o.nameID == 'bottom') {
                 console.log('bottomFirst')
@@ -446,8 +542,6 @@ function buildColors(colors) {
     }
   })
 }
-
-
 
 
 

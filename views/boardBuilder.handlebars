@@ -2,6 +2,20 @@
 <html lang="en">
   {{> boardMeta}}
  <body>
+     <button id="ready">are you ready</button>
+     <div id="customBoardProps">
+        <div id="name">{{ name }}</div>
+        <div id="contour">{{ contour }}</div>
+        <div id="deckColor">{{ deckColor}}</div>
+        <div id="bottomColor">{{ bottomColor}}</div>
+        <div id="model">{{ model }}</div>
+        <div id="height">{{ height }}</div>
+        <div id="width">{{ width}}</div>
+        <div id="thickness">{{ thickness}}</div>
+        <div id="fins">{{ fins }}</div>
+        <div id="finish">{{ finish }}</div>
+        <div id="rocker">{{ rocker}}</div>
+     </div>
   <div class="customizer" id="custom">
     <h1 id="boardName">{{ boardModel }}</h1>
     <ul class="propList">
@@ -34,9 +48,9 @@
 </div>
 
 <div class="bottomButtons">
-    <button class="saveBoard"><img src="../_possible_photos/download-button.png" alt="download button"></button>
+    <button class="saveBoard"><img src="/_possible_photos/download-button.png" alt="download button"></button>
     <form action="/">
-        <button type="submit" class="homeButton"><img src="../photos/home.png" alt="home button"></button>
+    <button type="submit" class="homeButton"><img src="/photos/home.png" alt="home button"></button>
     </form>
 </div>
 
