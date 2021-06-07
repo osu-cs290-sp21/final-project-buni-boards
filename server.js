@@ -27,7 +27,12 @@ app.get('/blog', function(req, res, next) {
 })
 
 app.get('/build-a-buni', function(req, res, next){
-  res.status(200).render('boardBuilder', {layout: false});
+  res.status(200).render('boardBuilder');
+})
+
+app.get('/board-builder/:model', function(req, res, next){
+  var model = req.params.model
+  res.status(200).render('boardBuilder');
 })
 
 app.listen(port, function () {

@@ -1,5 +1,5 @@
 /* ===========================Three JS=========================== */
-const MODEL_PATH = './javascripts/flyinRabbitV4.glb';
+const MODEL_PATH = './javascripts/rabbitsfoot.glb';
 const DRAG_NOTICE = document.getElementById('js-drag-notice');
 var surfboard;
 
