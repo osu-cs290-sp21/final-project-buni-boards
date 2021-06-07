@@ -267,3 +267,10 @@ input[type=submit]:hover {
 label{
   font-family: 'ZCOOL KuaiLe', cursive;
 }
+
+.error {
+  font-family: 'ZCOOL KuaiLe', cursive;
+  color: white;
+  font-size: 72px;
+  text-align: center;
+}
