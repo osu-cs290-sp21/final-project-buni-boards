@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+html, body, div, img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+#boardHeader{
+  font-family: 'ZCOOL KuaiLe', cursive;
+  background-color: white;
+  width: 100%;
+  height: 10%;
+  margin: 0;
+  font-size: 3vw;
+  padding-top: 5%;
+  text-align: center;
+}
+.boardContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: white;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: -5%;
+}
+
+#foot{
+  height: 500px;
+  width: 218px;
+}
+.boardBox.foot{
+  height: 500px;
+  width: 218px;
+}
+
+#gem{
+  width: 170px;
+  height: 500px;
+}
+
+#flyin{
+  width: 170px;
+  height: 500px;
+}
+
+.boardBox{
+  width: 170px;
+  height: 500px;
+  background-color: white;
+}
+
+.boardBox:hover{
+  cursor: pointer;
+}
+
+.boardBox:active{
+  transform: scale(1.1);
+}
+
+.boardBox h2{
+  text-align: center;
+  font-family: 'PT Mono', monospace;
+}
+
+img {
+  transition: transform .7s ease-in-out;
+}
+
+.boardBox img:hover{
+  transform: rotate(20deg);
+}

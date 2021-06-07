@@ -1,5 +1,9 @@
 /* ===========================Three JS=========================== */
-const MODEL_PATH = './javascripts/flyinRabbitV4.glb';
+let boardName = document.getElementById('boardName')
+let modelName = boardName.textContent.replace(" ", "").replace("'", "")
+console.log("board:", modelName)
+const MODEL_PATH = "/javascripts/" + modelName + ".glb";
+console.log(MODEL_PATH)
 const DRAG_NOTICE = document.getElementById('js-drag-notice');
 var surfboard;
 
@@ -442,7 +446,6 @@ function buildColors(colors) {
     }
   })
 }
-
 
 
 
