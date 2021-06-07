@@ -1,17 +1,28 @@
-{
-  "boardsArr":[
-    {
-      "name": "parkers",
-      "model": "flyinrabbit",
-      "deckColor": "438AAC",
-      "bottomColor": "131417",
-      "height": 5.7,
-      "width": 20.75,
-      "thickness": 2.5,
-      "fins": "quad-fin",
-      "contour": "flat",
-      "rocker": "less-rocker",
-      "finish": "polish"
-    }
-  ]
-}
+[
+  {
+    "name": "parkers",
+    "model": "flyinrabbit",
+    "deckColor": "438AAC",
+    "bottomColor": "131417",
+    "height": 5.7,
+    "width": 20.75,
+    "thickness": 2.5,
+    "fins": "quad-fin",
+    "contour": "flat",
+    "rocker": "less-rocker",
+    "finish": "polish"
+  },
+  {
+    "name": "fdsaf",
+    "model": "the-gem",
+    "height": "5'2",
+    "width": "20.5",
+    "thickness": "2.5",
+    "fins": "twin-fin",
+    "contour": "concave",
+    "deckColor": "EFF2F2",
+    "bottomColor": "EFF2F2",
+    "rocker": "less-rocker",
+    "finish": "standard"
+  }
+]

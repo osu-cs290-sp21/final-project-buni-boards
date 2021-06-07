@@ -1,6 +1,6 @@
 /* ===========================Three JS=========================== */
 let boardName = document.getElementById('boardName')
-let modelName = boardName.textContent.replace(" ", "").replace("'", "")
+let modelName = boardName.textContent.replace(" ", "")
 console.log("board:", modelName)
 const MODEL_PATH = "/javascripts/" + modelName + ".glb";
 console.log(MODEL_PATH)
@@ -157,24 +157,24 @@ let contour = document.getElementById('contour')
 let fins = document.getElementById('fins')
 let rockers = document.getElementById('rocker')
 let finishes = document.getElementById('finish')
+var deckColor = document.getElementById('deckColor')
+var bottomColor = document.getElementById('bottomColor')
 
 
 /* test */
 var ready = document.getElementById('ready')
 ready.addEventListener('click', event =>{
-  var deckColor = document.getElementById('deckColor').textContent
-  var bottomColor = document.getElementById('bottomColor').textContent
   console.log('deck: ', deckColor)
 
   console.log('yes')
 
   var bottom_mtl = new THREE.MeshPhongMaterial({
-    color: parseInt('0x' + bottomColor),
+    color: parseInt('0x' + bottomColor.textContent),
     shininess: 10      
   });
 
   var deck_mtl = new THREE.MeshPhongMaterial({
-    color: parseInt('0x' + deckColor),
+    color: parseInt('0x' + deckColor.textContent),
     shininess: 10      
   });
 
@@ -225,14 +225,17 @@ if(item.id == 'dims'){
 
 else if (item.id == 'contours'){
   let allContours = document.querySelectorAll('.contour')
-  let name = document.getElementById('contour')
+  let contours = document.getElementById('contour')
   allContours.forEach(item => {
+    item.childNodes[1].childNodes[3].addEventListener('click', event =>{
+      contours.textContent = item.childNodes[1].childNodes[3].id
+    })
     console.log("item:", item.childNodes[1].childNodes[3].id)
-    console.log("name:" , name.textContent)
-    console.log('check: ', item.childNodes[1].childNodes[3].id == name.textContent)
-    if (item.childNodes[1].childNodes[3].id == name.textContent){
+    console.log("name:" , contours.textContent)
+    console.log('check: ', item.childNodes[1].childNodes[3].id == contours.textContent)
+    if (item.childNodes[1].childNodes[3].id == contours.textContent){
       console.log("inside check")
-      document.getElementById(`${name.textContent}`).checked = true
+      document.getElementById(`${contours.textContent}`).checked = true
     }
   })
 }
@@ -241,6 +244,10 @@ else if (item.id == 'fins'){
   let allFins = document.querySelectorAll('.fin')
   let fins = document.getElementById('fins')
   allFins.forEach(item => {
+    item.childNodes[1].childNodes[3].addEventListener('click', event =>{
+      console.log("id:", item.childNodes[1].childNodes[3].id)
+      fins.textContent = item.childNodes[1].childNodes[3].id
+    })
     console.log("item:", item.childNodes[1].childNodes[3].id)
     console.log("fins:" , fins.textContent)
     console.log('check: ', item.childNodes[1].childNodes[3].id == fins.textContent)
@@ -255,6 +262,9 @@ else if (item.id == 'rocker'){
   let allRockers = document.querySelectorAll('.rocker')
   let rockers = document.getElementById('rocker')
   allRockers.forEach(item => {
+    item.childNodes[1].childNodes[3].addEventListener('click', event =>{
+      rockers.textContent = item.childNodes[1].childNodes[3].id
+    })
     console.log("item:", item.childNodes[1].childNodes[3].id)
     console.log("fins:" , rockers.textContent)
     console.log('check: ', item.childNodes[1].childNodes[3].id == rockers.textContent)
@@ -269,6 +279,9 @@ else if (item.id == 'finish'){
   let allFinishes = document.querySelectorAll('.finish')
   let finishes = document.getElementById('finish')
   allFinishes.forEach(item => {
+    item.childNodes[1].childNodes[3].addEventListener('click', event =>{
+      finishes.textContent = item.childNodes[1].childNodes[3].id
+    })
     console.log("item:", item.childNodes[1].childNodes[3].id)
     console.log("fins:" , finishes.textContent)
     console.log('check: ', item.childNodes[1].childNodes[3].id == finishes.textContent)
@@ -309,6 +322,7 @@ else if (item.id == 'colors'){
             console.log('in deck')
             console.log('color: ', color.color)
             saved_color = color.color
+            deckColor.textContent = color.color
             var deck_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
               shininess: color.shininess ? color.shininess : 10
@@ -320,6 +334,7 @@ else if (item.id == 'colors'){
           }
           else if(colortest.parentElement.id == 'bottom') {
             console.log('in bottom')
+            bottomColor.textContent = color.color
             var bottom_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
               shininess: color.shininess ? color.shininess : 10      
@@ -330,6 +345,8 @@ else if (item.id == 'colors'){
           }
 
           else if(colortest.parentElement.id == 'full') {
+            bottomColor.textContent = color.color
+            deckColor.textContent = color.color
             var bottom_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
               shininess: color.shininess ? color.shininess : 10      
@@ -542,6 +559,95 @@ function buildColors(colors) {
     }
   })
 }
+
+/*==================Modal*/
+
+function showModal() {
+
+  var modal = document.getElementById('add-board-modal');
+  var modalBackdrop = document.getElementById('modal-backdrop');
+
+  modal.classList.remove('hidden');
+  modalBackdrop.classList.remove('hidden');
+
+}
+
+function clearModalInputs() {
+
+  var modalInputElements = document.querySelectorAll('#add-board-modal input')
+  for (var i = 0; i < modalInputElements.length; i++) {
+    modalInputElements[i].value = '';
+  }
+
+}
+
+
+function hideModal() {
+  var modal = document.getElementById('add-board-modal');
+  var modalBackdrop = document.getElementById('modal-backdrop');
+
+  modal.classList.add('hidden');
+  modalBackdrop.classList.add('hidden');
+
+  clearModalInputs();
+
+}
+
+var modalAcceptButton = document.getElementById('modal-accept');
+modalAcceptButton.addEventListener('click', event => {
+  var customName = document.getElementById('board-name-input').value.trim();
+  var userName = document.getElementById('user-name-input').value.trim();
+  var boardDescripton = document.getElementById('board-description-input').value.trim();
+
+  if (!customName || !userName || !boardDescripton) {
+    alert("You must fill in all of the fields!");
+  } else {
+
+  var req = new XMLHttpRequest()
+  var reqUrl = '/my-boards'
+  console.log("== reqUrl:", reqUrl)
+  req.open('POST', reqUrl)
+  }
+
+  var userBoard = {
+    model: document.getElementById('boardName').textContent.replace(" ", "-"),
+    name: userName,
+    height: height.textContent,
+    width: width.textContent,
+    thickness: thickness.textContent,
+    fins: fins.textContent,
+    contour: contour.textContent,
+    deckColor: deckColor.textContent,
+    bottomColor: bottomColor.textContent,
+    rocker: rockers.textContent,
+    finish: finishes.textContent,
+  }
+
+  console.log("userBoard: ", userBoard)
+
+  var reqBody = JSON.stringify(userBoard)
+  console.log("== reqBody:", reqBody)
+  console.log("== typeof(reqBody):", typeof(reqBody))
+
+  req.setRequestHeader('Content-Type', 'application/json')
+
+  // req.addEventListener('load', function (event) {
+  //   if (event.target.status === 200) {
+  //     var photoCardTemplate = Handlebars.templates.photoCard;
+  //     var newPhotoCardHTML = photoCardTemplate(photo);
+  //     var photoCardContainer = document.querySelector('.photo-card-container');
+  //     photoCardContainer.insertAdjacentHTML('beforeend', newPhotoCardHTML);
+  //   } else {
+  //     alert("Failed to add photo to database; error:\n\n" + event.target.response)
+  //   }
+  // })
+
+  req.send(reqBody)
+
+  hideModal()
+})
+
+/*==================Modal*/
 
 
 
