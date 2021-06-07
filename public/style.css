@@ -48,6 +48,7 @@ header{
   width: auto;
   margin-top: 2px;
   margin-left: 1px;
+
 }
 
 /* Style the links inside the navigation bar */
@@ -265,4 +266,11 @@ input[type=submit]:hover {
 
 label{
   font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.error {
+  font-family: 'ZCOOL KuaiLe', cursive;
+  color: white;
+  font-size: 72px;
+  text-align: center;
 }

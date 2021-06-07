@@ -25,6 +25,8 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
+
+
 app.get('/', function(req, res, next){
   res.status(200).render('homepage');
 })
@@ -37,8 +39,8 @@ app.get('/contact-us', function(req, res, next) {
   res.status(200).render('contactpage');
 })
 
-app.get('/blog', function(req, res, next) {
-  res.status(200).render('blogpage');
+app.get('/my-boards', function(req, res, next) {
+  res.status(200).render('myboardspage');
 })
 
 app.get('/build-a-buni/:model', function(req, res, next){
@@ -46,7 +48,7 @@ app.get('/build-a-buni/:model', function(req, res, next){
   if (boards.includes(req.params.model)){
     console.log("to string:", (req.params.model).replace("-", " "))
     var id = (req.params.model).replace("-", " ")
-  
+
     res.status(200).render('boardBuilder', {boardModel: id, layout: false});
   }
   else{
@@ -61,6 +63,10 @@ app.get('/build-a-buni', function(req, res, next){
 app.get('/board-builder', function(req, res, next){
   res.status(200).render('boardPage');
 })
+
+app.get('*', function (req, res) {
+  res.status(404).render('404page');
+});
 
 app.listen(port, function () {
   console.log("== Server is listening on port", port);
