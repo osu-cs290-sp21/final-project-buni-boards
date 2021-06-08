@@ -46,5 +46,21 @@
     "bottomColor": "EC4B17",
     "rocker": "less-rocker",
     "finish": "standard"
+  },
+  {
+    "id": 3,
+    "creator": "Alihan Baysal",
+    "custom": "The Turk",
+    "description": "Let's rip dude",
+    "model": "rabbits-foot",
+    "height": "5'2",
+    "width": "20.5",
+    "thickness": "2.5",
+    "fins": "twin-fin",
+    "contour": "convex",
+    "deckColor": "FC9736",
+    "bottomColor": "FC9736",
+    "rocker": "more-rocker",
+    "finish": "polish"
   }
 ]
