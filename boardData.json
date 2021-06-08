@@ -17,22 +17,6 @@
   },
   {
     "id": "1",
-    "creator": "Alihan",
-    "custom": "The Turk",
-    "description": "I am Kook",
-    "model": "rabbits-foot",
-    "height": "5'2",
-    "width": "20.5",
-    "thickness": "2.5",
-    "fins": "twin-fin",
-    "contour": "concave",
-    "deckColor": "EFF2F2",
-    "bottomColor": "EFF2F2",
-    "rocker": "less-rocker",
-    "finish": "standard"
-  },
-  {
-    "id": "2",
     "creator": "Milk Bois",
     "custom": "Moolack Special",
     "description": "don't be a kook",
@@ -48,7 +32,7 @@
     "finish": "standard"
   },
   {
-    "id": "3",
+    "id": "2",
     "creator": "Pakre Conrad",
     "custom": "orange board",
     "description": "test board",
@@ -64,18 +48,18 @@
     "finish": "standard"
   },
   {
-    "id": "4",
-    "creator": "p-dawg",
-    "custom": "sickest on the block",
-    "description": "not really",
-    "model": "the-gem",
-    "height": "84",
-    "width": "18.75",
-    "thickness": "2.8",
-    "fins": "quad-fin",
+    "id": 3,
+    "creator": "Alihan Baysal",
+    "custom": "The Turk",
+    "description": "Let's rip dude",
+    "model": "rabbits-foot",
+    "height": "5'2",
+    "width": "20.5",
+    "thickness": "2.5",
+    "fins": "twin-fin",
     "contour": "convex",
-    "deckColor": "438AAC",
-    "bottomColor": "946F43",
+    "deckColor": "FC9736",
+    "bottomColor": "FC9736",
     "rocker": "more-rocker",
     "finish": "polish"
   }
