@@ -64,19 +64,19 @@
     "finish": "standard"
   },
   {
-    "id": 4,
-    "creator": "master peyton",
-    "custom": "poo poo pee pee",
-    "description": "empty head",
-    "model": "flyin-rabbit",
-    "height": "5'2",
-    "width": "20.5",
-    "thickness": "2.5",
-    "fins": "twin-fin",
-    "contour": "concave",
-    "deckColor": "64739B",
-    "bottomColor": "4F556F",
-    "rocker": "less-rocker",
+    "id": "4",
+    "creator": "p-dawg",
+    "custom": "sickest on the block",
+    "description": "not really",
+    "model": "the-gem",
+    "height": "84",
+    "width": "18.75",
+    "thickness": "2.8",
+    "fins": "quad-fin",
+    "contour": "convex",
+    "deckColor": "438AAC",
+    "bottomColor": "946F43",
+    "rocker": "more-rocker",
     "finish": "polish"
   }
 ]
