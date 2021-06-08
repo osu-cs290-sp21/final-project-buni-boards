@@ -307,11 +307,9 @@ property.forEach(item => {
   console.log(item.classList)
   var slideMenu = document.querySelector('.test')
   if (item.classList[1] == 'active'){
-    // closeSide();
     while (slideMenu.firstChild) {
       slideMenu.removeChild(slideMenu.firstChild);
     }
-    // customizer.style.left = '0'
   }
   else{
     item.classList.add('active')
@@ -331,13 +329,12 @@ if(item.id == 'dims'){
   thicknessSlider.value = userThickness.textContent
   length.textContent = inchesToFeet(userLength.textContent)
   dimSlider.defaultValue = userLength.textContent
-  // addDims(length.textContent, "20.75")
   var lengthObject = scene.getObjectByName("length")
   var widthObject = scene.getObjectByName("width")
 
   scene.add(line)
   scene.add(line2)
-  updateLength(inchesToFeet(userLength.textContent))
+  updateLength(length.textContent)
   updateWidth(userWidth.textContent)
   if (dimSlider) {  
     dimSlider.oninput = function () {
@@ -381,11 +378,7 @@ else if (item.id == 'contours'){
     item.childNodes[1].childNodes[3].addEventListener('click', event =>{
       contours.textContent = item.childNodes[1].childNodes[3].id
     })
-    console.log("item:", item.childNodes[1].childNodes[3].id)
-    console.log("name:" , contours.textContent)
-    console.log('check: ', item.childNodes[1].childNodes[3].id == contours.textContent)
     if (item.childNodes[1].childNodes[3].id == contours.textContent){
-      console.log("inside check")
       document.getElementById(`${contours.textContent}`).checked = true
     }
   })
@@ -469,7 +462,6 @@ else if (item.id == 'colors'){
         const allColors = document.querySelectorAll(".color");
         for (const colortest of allColors) {
         colortest.addEventListener('click', function(e){
-          console.log("colortest:" ,colortest.parentElement.id)
           selection = colortest.parentElement.id
           let color = colors[parseInt(e.target.dataset.key)];
           let new_mtl;
@@ -802,17 +794,6 @@ modalAcceptButton.addEventListener('click', event => {
   console.log("== typeof(reqBody):", typeof(reqBody))
 
   req.setRequestHeader('Content-Type', 'application/json')
-
-  // req.addEventListener('load', function (event) {
-  //   if (event.target.status === 200) {
-  //     var photoCardTemplate = Handlebars.templates.photoCard;
-  //     var newPhotoCardHTML = photoCardTemplate(photo);
-  //     var photoCardContainer = document.querySelector('.photo-card-container');
-  //     photoCardContainer.insertAdjacentHTML('beforeend', newPhotoCardHTML);
-  //   } else {
-  //     alert("Failed to add photo to database; error:\n\n" + event.target.response)
-  //   }
-  // })
 
   req.send(reqBody)
 
