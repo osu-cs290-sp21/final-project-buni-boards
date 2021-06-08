@@ -30,6 +30,12 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.static('public'));
 
+var hbs = exphbs.create({})
+
+hbs.handlebars.registerHelper('isFoot', function (value){
+  return value == 'rabbits-foot'
+})
+
 
 
 app.get('/', function(req, res, next){
@@ -45,29 +51,30 @@ app.get('/contact-us', function(req, res, next) {
 })
 
 app.get('/my-boards', function(req, res, next) {
-  res.status(200).render('myboardspage');
+  console.log("array size:", boardData.length)
+  res.status(200).render('myboardspage', boardData);
 })
 
-app.get('/build-a-buni/:model/:boardName', function(req, res, next){
+app.get('/build-a-buni/:model/:id', function(req, res, next){
   console.log('param: ',req.params.model )
   var boardName = req.params.boardName
-  if (boards.includes(req.params.model) && madeBoard.includes(boardName)){
+  if (boards.includes(req.params.model)){
     console.log("to string:", (req.params.model).replace("-", " "))
-    var id = (req.params.model).replace("-", " ")
-  
+    var model = (req.params.model).replace("-", " ")
+  var id = req.params.id
     res.status(200).render('boardBuilder', {
-      boardModel: id, 
-      name: boardData[boardName].name,
-      model: boardData[boardName].model,
-      height: boardData[boardName].height,
-      width: boardData[boardName].width,
-      thickness: boardData[boardName].thickness,
-      fins: boardData[boardName].fins,
-      contour: boardData[boardName].contour,
-      deckColor: boardData[boardName].deckColor,
-      bottomColor: boardData[boardName].bottomColor,
-      rocker: boardData[boardName].rocker,
-      finish: boardData[boardName].finish,
+      boardModel: model, 
+      creator: boardData[id].creator,
+      model: boardData[id].model,
+      height: boardData[id].height,
+      width: boardData[id].width,
+      thickness: boardData[id].thickness,
+      fins: boardData[id].fins,
+      contour: boardData[id].contour,
+      deckColor: boardData[id].deckColor,
+      bottomColor: boardData[id].bottomColor,
+      rocker: boardData[id].rocker,
+      finish: boardData[id].finish,
       layout: false});
   }
   else{
@@ -92,10 +99,13 @@ app.post('/my-boards', function(req, res, next){
   console.log("== req.body:", req.body)
   if (req.body){
     var boardModel = req.params.boardModel
-    madeBoard.push(req.body.name)
+    madeBoard.push(req.body.creator)
     boardData.push({
+      id: boardData.length, /* temporary */
       boardModel: req.body.boardModel,
-      name: req.body.name,
+      creator: req.body.creator,
+      custom: req.body.custom,
+      description: req.body.description,
       model: req.body.model,
       height: req.body.height,
       width: req.body.width,

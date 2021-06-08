@@ -332,6 +332,7 @@ input{
 
 .hidden {
   display: none;
+  z-index: -1000;
 }
 
 .action-button {
@@ -432,6 +433,42 @@ input{
   background-color: black;
   color: white;
   transform: scale(1.2);
+}
+
+#readyContainer{
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+#ready{
+  font-family: 'PT Mono', monospace;
+  position: absolute;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  width: 12vw;
+  height: 12vw;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 1001;
+}
+
+#ready{
+  transition: transform .7s ease-in-out;
+}
+
+#ready:hover{
+  transform: scale(1.2);
+  transform: rotate(360deg);
+}
+
+#ready:active{
+  transform: scale(1.3);
 }
 
 /*========================== MODAL==========================*/

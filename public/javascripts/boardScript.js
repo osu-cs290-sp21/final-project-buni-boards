@@ -585,8 +585,12 @@ function clearModalInputs() {
 function hideModal() {
   var modal = document.getElementById('add-board-modal');
   var modalBackdrop = document.getElementById('modal-backdrop');
+  var readyContainer = document.getElementById('readyContainer')
+  var readyButton = document.getElementById('ready')
 
   modal.classList.add('hidden');
+  readyContainer.classList.add('hidden')
+  readyButton.classList.add('hidden')
   modalBackdrop.classList.add('hidden');
 
   clearModalInputs();
@@ -611,7 +615,9 @@ modalAcceptButton.addEventListener('click', event => {
 
   var userBoard = {
     model: document.getElementById('boardName').textContent.replace(" ", "-"),
-    name: userName,
+    custom: customName,
+    creator: userName,
+    description: boardDescripton,
     height: height.textContent,
     width: width.textContent,
     thickness: thickness.textContent,

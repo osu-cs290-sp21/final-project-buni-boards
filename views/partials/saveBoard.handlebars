@@ -1,4 +1,7 @@
-<div id="modal-backdrop" class="hidden"></div>
+<div id="modal-backdrop" class=""></div>
+<div id="readyContainer">
+  <button id="ready" onclick="hideModal()">press to unleash the beast</button>
+</div>
 <div id="add-board-modal" class="hidden">
   <div class="modal-dialog">
     <div class="modal-header">
@@ -26,8 +29,10 @@
     </div>
 
     <div class="modal-footer">
+      <form action="/my-boards">
+        <button type="submit" id="modal-accept" class="action-button">save board</button>
+      </form>
       <button type="button" id="modal-cancel" class="modal-hide-button action-button" onclick="hideModal()">cancel</button>
-      <button type="button" id="modal-accept" class="action-button">save board</button>
     </div>
 
   </div>
