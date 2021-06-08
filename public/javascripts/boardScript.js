@@ -23,10 +23,96 @@ renderer.setPixelRatio(window.devicePixelRatio);  //make them relavant to shadow
 document.body.appendChild(renderer.domElement);
 
 const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000); //field view, size of window, default clipping planes
-const cameraFar = 5
+const cameraFar = 6
 camera.position.z = cameraFar;
 camera.position.x = 0;
 var loaded = false;
+
+/*test*/
+const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const points = []; 
+points.push( new THREE.Vector3(1, -2, 0 ) ); 
+points.push( new THREE.Vector3( 1, 1.75, 0 ) ); 
+// points.push( new THREE.Vector3( 10, 0, 0 ) ); 
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const line = new THREE.Line( geometry, material )
+line.name = 'y-line'
+
+const material2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const points2 = []; 
+points2.push( new THREE.Vector3(-0.5, -2.1, 0 ) ); 
+points2.push( new THREE.Vector3( 0.5, -2.1, 0 ) ); 
+// points.push( new THREE.Vector3( 10, 0, 0 ) ); 
+const geometry2 = new THREE.BufferGeometry().setFromPoints( points2 );
+const line2 = new THREE.Line( geometry2, material2 )
+line2.name = 'x-line'
+
+var mesh, mesh2, textGeometry, fontloader
+  
+
+function updateLength(lengthObject) {
+  let testObject = scene.getObjectByName("length")
+  scene.remove(testObject)
+  fontloader = new THREE.FontLoader();
+  fontloader.load( '/PTMono.js', function ( font ) {
+
+  textGeometry = new THREE.TextGeometry( `${lengthObject}`, {
+
+    font: font,
+
+    size: 0.1,
+    height: 0.01,
+    curveSegments: 12,
+
+    bevelEnabled: false
+
+  });
+
+  textMaterial = new THREE.MeshPhongMaterial( 
+    { color: 0xffffff, specular: 0xffffff }
+  );
+
+  mesh = new THREE.Mesh( textGeometry, textMaterial );
+  mesh.name = 'length'
+  mesh.position.x = 1.1
+
+  scene.add( mesh );
+});  
+}
+
+function updateWidth(width) {
+  let testObject2 = scene.getObjectByName("width")
+  scene.remove(testObject2)
+  fontloader = new THREE.FontLoader();
+  fontloader.load( '/PTMono.js', function ( font ) {
+
+  textGeometry = new THREE.TextGeometry( `${width + `"`}`, {
+
+    font: font,
+
+    size: 0.1,
+    height: 0.01,
+    curveSegments: 12,
+
+    bevelEnabled: false
+
+  });
+
+  textMaterial = new THREE.MeshPhongMaterial( 
+    { color: 0xffffff, specular: 0xffffff }
+  );
+
+  mesh2 = new THREE.Mesh( textGeometry, textMaterial );
+  mesh2.name = 'width'
+  mesh2.position.x = -0.2
+  mesh2.position.y = -2.3
+
+  scene.add( mesh2 );
+}); 
+}
+
+/*test*/
+
 
 const INITIAL_MTL = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 10 } );
 
@@ -48,12 +134,18 @@ const INITIAL_MAP = [
     });
 
   surfboard.scale.set(2, 2, 2);
-  surfboard.rotation.y = Math.PI / 2;
+  if(modelName == 'thegem'){
+    surfboard.rotation.y = -Math.PI/2;
+  }
+  else{
+    surfboard.rotation.y = Math.PI / 2;
+  }
   surfboard.position.y = -2
 
   for (const object of INITIAL_MAP) {
     initColor(surfboard, object.childID, object.mtl)
   }
+  
 
   scene.add(surfboard)
 }, undefined, function(error) {
@@ -159,6 +251,9 @@ let rockers = document.getElementById('rocker')
 let finishes = document.getElementById('finish')
 var deckColor = document.getElementById('deckColor')
 var bottomColor = document.getElementById('bottomColor')
+var userLength = document.getElementById('height')
+var userWidth = document.getElementById('width')
+var userThickness = document.getElementById('thickness')
 
 
 /* test */
@@ -199,8 +294,6 @@ let inchesToFeet = function(inches){
   console.log(feet + "'" + remainder)
   return feet + "'" + remainder
 }
-console.log('test')
-
 let property = document.querySelectorAll('.property');
 var selection;
 var saved_color = 'EFF2F2';
@@ -211,19 +304,77 @@ property.forEach(item => {
   var customizer = document.getElementById('custom')
   customizer.style.left = "17%";
   var templateHtml = Handlebars.partials[`${item.id}`]();
+  console.log(item.classList)
   var slideMenu = document.querySelector('.test')
+  if (item.classList[1] == 'active'){
+    // closeSide();
+    while (slideMenu.firstChild) {
+      slideMenu.removeChild(slideMenu.firstChild);
+    }
+    // customizer.style.left = '0'
+  }
+  else{
+    item.classList.add('active')
+  }
   slideMenu.insertAdjacentHTML('beforebegin', templateHtml)
 
 if(item.id == 'dims'){
   let dimSlider = document.getElementById('dimSlider');
-  let length = document.getElementById('length')
+  let widthSlider = document.getElementById('widthSlider')
+  let thicknessSlider = document.getElementById('thicknessSlider');
+  let length = document.getElementById('lengthContent')
+  let width = document.getElementById('widthContent')
+  let thickness = document.getElementById('thicknessContent')
+  width.textContent = userWidth.textContent + `"`
+  widthSlider.value = userWidth.textContent
+  thickness.textContent = userThickness.textContent + `"`
+  thicknessSlider.value = userThickness.textContent
+  length.textContent = inchesToFeet(userLength.textContent)
+  dimSlider.defaultValue = userLength.textContent
+  // addDims(length.textContent, "20.75")
+  var lengthObject = scene.getObjectByName("length")
+  var widthObject = scene.getObjectByName("width")
+
+  scene.add(line)
+  scene.add(line2)
+  updateLength(inchesToFeet(userLength.textContent))
+  updateWidth(userWidth.textContent)
   if (dimSlider) {  
-    dimSlider.oninput = function() {
-    length.textContent = inchesToFeet(this.value)
-  }}
+    dimSlider.oninput = function () {
+      length.textContent = inchesToFeet(this.value)  
+      lengthObject = scene.getObjectByName("length")
+      scene.remove(lengthObject)
+      updateLength(length.textContent)
+      dimSlider.defaultValue = this.value 
+      userLength.textContent = this.value
+      
+    }
+    dimSlider.onmouseup = function() {
+    lengthObject = scene.getObjectByName("length")
+    scene.remove(lengthObject)
+    updateLength(length.textContent)
+    }
+  }
+  widthSlider.oninput = function () {
+    userWidth.textContent = this.value
+    width.textContent = userWidth.textContent + `"`
+    widthObject = scene.getObjectByName("width")
+    scene.remove(widthObject)
+    updateWidth(userWidth.textContent)
+  }
+  widthSlider.onmouseup = function () {
+    widthObject = scene.getObjectByName("width")
+    scene.remove(widthObject)
+    updateWidth(userWidth.textContent)
+  }
+  thicknessSlider.oninput = function () {
+    userThickness.textContent = this.value
+    thickness.textContent = userThickness.textContent + `"`
+  }
 }
 
 else if (item.id == 'contours'){
+  clearScene()
   let allContours = document.querySelectorAll('.contour')
   let contours = document.getElementById('contour')
   allContours.forEach(item => {
@@ -241,6 +392,7 @@ else if (item.id == 'contours'){
 }
 
 else if (item.id == 'fins'){
+  clearScene()
   let allFins = document.querySelectorAll('.fin')
   let fins = document.getElementById('fins')
   allFins.forEach(item => {
@@ -259,6 +411,7 @@ else if (item.id == 'fins'){
 }
 
 else if (item.id == 'rocker'){
+  clearScene()
   let allRockers = document.querySelectorAll('.rocker')
   let rockers = document.getElementById('rocker')
   allRockers.forEach(item => {
@@ -276,6 +429,7 @@ else if (item.id == 'rocker'){
 }
 
 else if (item.id == 'finish'){
+  clearScene()
   let allFinishes = document.querySelectorAll('.finish')
   let finishes = document.getElementById('finish')
   allFinishes.forEach(item => {
@@ -296,6 +450,7 @@ else if (item.id == 'finish'){
 
 
 else if (item.id == 'colors'){
+  clearScene()
   const dropButtons = document.querySelectorAll(".dropButton");
   const dropDownColors = document.querySelector('.dropDownColors');
   dropButtons.forEach(dropButton => {
@@ -379,15 +534,26 @@ else if (item.id == 'colors'){
 /*=======End Colors========*/
 
 
+function clearScene() {
+  scene.remove(line)
+  scene.remove(line2)
+  scene.remove(mesh)
+  let mesh2Object = scene.getObjectByName('width')
+  scene.remove(mesh2Object)
+}
+
+
   let closeButton = document.querySelector('.closeButton')
   closeButton.addEventListener('click', event => {
-    console.log('click')
     removed = document.querySelector('.slideMenu')
     removed.remove()
     customizer.style.left = "0";
+    clearScene();
   })
   });
 });
+
+
 
 const colors = [
   {
@@ -654,6 +820,3 @@ modalAcceptButton.addEventListener('click', event => {
 })
 
 /*==================Modal*/
-
-
-
