@@ -529,7 +529,8 @@ else if (item.id == 'colors'){
 function clearScene() {
   scene.remove(line)
   scene.remove(line2)
-  scene.remove(mesh)
+  let mesh1Object = scene.getObjectByName('length')
+  scene.remove(mesh1Object)
   let mesh2Object = scene.getObjectByName('width')
   scene.remove(mesh2Object)
 }
