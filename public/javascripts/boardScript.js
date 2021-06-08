@@ -28,6 +28,106 @@ camera.position.z = cameraFar;
 camera.position.x = 0;
 var loaded = false;
 
+/*test*/
+const material = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const points = []; 
+points.push( new THREE.Vector3(1, -2, 0 ) ); 
+points.push( new THREE.Vector3( 1, 1.75, 0 ) ); 
+// points.push( new THREE.Vector3( 10, 0, 0 ) ); 
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+const line = new THREE.Line( geometry, material )
+
+const material2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
+const points2 = []; 
+points2.push( new THREE.Vector3(-0.5, -2, 0 ) ); 
+points2.push( new THREE.Vector3( 0.5, -2, 0 ) ); 
+// points.push( new THREE.Vector3( 10, 0, 0 ) ); 
+const geometry2 = new THREE.BufferGeometry().setFromPoints( points2 );
+const line2 = new THREE.Line( geometry2, material2 )
+
+var mesh, mesh2
+
+
+function addDims(length, width) {
+  scene.add(line)
+  scene.add(line2)
+  var fontloader = new THREE.FontLoader();
+  fontloader.load( '/PTMono.js', function ( font ) {
+
+  var textGeometry = new THREE.TextGeometry( `${length}`, {
+
+    font: font,
+
+    size: 0.1,
+    height: 0.01,
+    curveSegments: 12,
+
+    bevelEnabled: false
+
+  });
+
+  var textGeometry2 = new THREE.TextGeometry( `${width}`, {
+
+    font: font,
+
+    size: 0.1,
+    height: 0.01,
+    curveSegments: 12,
+
+    bevelEnabled: false
+
+  });
+
+  var textMaterial = new THREE.MeshPhongMaterial( 
+    { color: 0xffffff, specular: 0xffffff }
+  );
+
+  mesh = new THREE.Mesh( textGeometry, textMaterial );
+  mesh2 = new THREE.Mesh( textGeometry2, textMaterial )
+  mesh.position.x = 1.1
+  mesh2.position.x = -0.2
+  mesh2.position.y = -2.2
+
+  scene.add( mesh );
+  scene.add(mesh2)
+
+});   
+  
+}
+
+function updateLength(length, mesh) {
+  var fontloader = new THREE.FontLoader();
+  fontloader.load( '/PTMono.js', function ( font ) {
+
+  var textGeometry = new THREE.TextGeometry( `${length}`, {
+
+    font: font,
+
+    size: 0.1,
+    height: 0.01,
+    curveSegments: 12,
+
+    bevelEnabled: false
+
+  });
+
+  var textMaterial = new THREE.MeshPhongMaterial( 
+    { color: 0xffffff, specular: 0xffffff }
+  );
+
+  mesh = new THREE.Mesh( textGeometry, textMaterial );
+  mesh.position.x = 1.1
+
+  scene.add( mesh );
+
+
+});  
+  
+}
+
+/*test*/
+
+
 const INITIAL_MTL = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 10 } );
 
 const INITIAL_MAP = [
@@ -54,6 +154,7 @@ const INITIAL_MAP = [
   for (const object of INITIAL_MAP) {
     initColor(surfboard, object.childID, object.mtl)
   }
+  
 
   scene.add(surfboard)
 }, undefined, function(error) {
@@ -217,10 +318,15 @@ property.forEach(item => {
 if(item.id == 'dims'){
   let dimSlider = document.getElementById('dimSlider');
   let length = document.getElementById('length')
+  addDims(length.textContent, "20.75")
   if (dimSlider) {  
     dimSlider.oninput = function() {
+      scene.remove(mesh)
     length.textContent = inchesToFeet(this.value)
+    updateLength(length.textContent)
+    scene.remove(mesh)
   }}
+  scene.remove(mesh)
 }
 
 else if (item.id == 'contours'){
@@ -654,6 +760,3 @@ modalAcceptButton.addEventListener('click', event => {
 })
 
 /*==================Modal*/
-
-
-

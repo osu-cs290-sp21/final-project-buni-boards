@@ -62,5 +62,21 @@
     "bottomColor": "EC4B17",
     "rocker": "less-rocker",
     "finish": "standard"
+  },
+  {
+    "id": 4,
+    "creator": "master peyton",
+    "custom": "poo poo pee pee",
+    "description": "empty head",
+    "model": "flyin-rabbit",
+    "height": "5'2",
+    "width": "20.5",
+    "thickness": "2.5",
+    "fins": "twin-fin",
+    "contour": "concave",
+    "deckColor": "64739B",
+    "bottomColor": "4F556F",
+    "rocker": "less-rocker",
+    "finish": "polish"
   }
 ]
