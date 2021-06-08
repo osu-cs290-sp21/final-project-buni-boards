@@ -2,6 +2,19 @@
 <html lang="en">
   {{> boardMeta}}
  <body>
+     <div id="customBoardProps">
+        <div id="name">{{#if name }}{{ name }}{{else}}rideBuni{{/if}}</div>
+        <div id="contour">{{#if contour }}{{ contour }}{{else}}concave{{/if}}</div>
+        <div id="deckColor">{{#if deckColor }}{{ deckColor }}{{else}}EFF2F2{{/if}}</div>
+        <div id="bottomColor">{{#if bottomColor }}{{ bottomColor }}{{else}}EFF2F2{{/if}}</div>
+        <div id="model">{{#if model }}{{ model }}{{else}}thegem{{/if}}</div>
+        <div id="height">{{#if height }}{{ height }}{{else}}5'2{{/if}}</div>
+        <div id="width">{{#if width }}{{ width }}{{else}}20.5{{/if}}</div>
+        <div id="thickness">{{#if thickness }}{{ thickness }}{{else}}2.5{{/if}}</div>
+        <div id="fins">{{#if fins }}{{ fins }}{{else}}twin-fin{{/if}}</div>
+        <div id="finish">{{#if finish }}{{ finish }}{{else}}standard{{/if}}</div>
+        <div id="rocker">{{#if rocker }}{{ rocker }}{{else}}less-rocker{{/if}}</div>
+     </div>
   <div class="customizer" id="custom">
     <h1 id="boardName">{{ boardModel }}</h1>
     <ul class="propList">
@@ -34,11 +47,11 @@
 </div>
 
 <div class="bottomButtons">
-    <button class="saveBoard"><img src="../_possible_photos/download-button.png" alt="download button"></button>
+    <button class="saveBoard" onclick="showModal()"><img src="/_possible_photos/download-button.png" alt="download button"></button>
     <form action="/">
-        <button type="submit" class="homeButton"><img src="../photos/home.png" alt="home button"></button>
+    <button type="submit" class="homeButton"><img src="/photos/home.png" alt="home button"></button>
     </form>
 </div>
-
+{{>saveBoard}}
 </body>
 </html>

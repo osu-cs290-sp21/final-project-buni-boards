@@ -1,0 +1,39 @@
+<div id="modal-backdrop" class=""></div>
+<div id="readyContainer">
+  <button id="ready" onclick="hideModal()">press to unleash the beast</button>
+</div>
+<div id="add-board-modal" class="hidden">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3>save yo stick</h3>
+      <button type="button" id="modal-close" class="modal-hide-button" onclick="hideModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="board-input-element">
+        <label for="board-name-input">Board Name</label>
+        <input type="text" id="board-name-input">
+      </div>
+
+      <div class="board-input-element">
+        <label for="user-name-input">Your Name</label>
+        <input type="text" id="user-name-input"></input>
+      </div>
+
+      <div class="board-input-element">
+        <label for="board-description-input">any cool thoughts</label>
+        <input type="text" id="board-description-input"></input>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <form action="/my-boards">
+        <button type="submit" id="modal-accept" class="action-button">save board</button>
+      </form>
+      <button type="button" id="modal-cancel" class="modal-hide-button action-button" onclick="hideModal()">cancel</button>
+    </div>
+
+  </div>
+</div>
