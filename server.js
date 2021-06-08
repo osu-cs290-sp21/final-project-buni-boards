@@ -130,6 +130,26 @@ app.post('/my-boards', function(req, res, next){
   }
 }) /*might be a problem when user tries to edit a saved board*/
 
+app.delete('/my-boards/delete-board', function(req, res, next){
+  boardData.splice(req.body.id, 1)
+  /*changing id for no conflicts when new boards get added */
+  for(i in boardData){
+    boardData[i].id = i;
+  }
+  fs.writeFile(
+    __dirname + '/boardData.json',
+    JSON.stringify(boardData, null, 2),
+    function (err) {
+      if (err) {
+        res.status(500).send("Error writing new data.  Try again later.")
+      } else {
+        res.status(200).send()
+      }
+    }
+  )
+
+})
+
 
 
 app.get('/build-a-buni', function(req, res, next){

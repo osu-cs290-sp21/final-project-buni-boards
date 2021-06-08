@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": "0",
     "creator": "Parker Conrad",
     "custom": "The Kookinator",
     "description": "Went with concave hull, quad set-up",
@@ -16,7 +16,7 @@
     "finish": "standard"
   },
   {
-    "id": 1,
+    "id": "1",
     "creator": "Alihan",
     "custom": "The Turk",
     "description": "I am Kook",
@@ -32,7 +32,7 @@
     "finish": "standard"
   },
   {
-    "id": 2,
+    "id": "2",
     "creator": "Milk Bois",
     "custom": "Moolack Special",
     "description": "don't be a kook",
@@ -48,23 +48,7 @@
     "finish": "standard"
   },
   {
-    "id": 3,
-    "creator": "dsfdas",
-    "custom": "asd",
-    "description": "fdsafsadf",
-    "model": "rabbits-foot",
-    "height": "5'2",
-    "width": "20.5",
-    "thickness": "2.5",
-    "fins": "twin-fin",
-    "contour": "concave",
-    "deckColor": "EFF2F2",
-    "bottomColor": "EFF2F2",
-    "rocker": "less-rocker",
-    "finish": "standard"
-  },
-  {
-    "id": 4,
+    "id": "3",
     "creator": "Pakre Conrad",
     "custom": "orange board",
     "description": "test board",
