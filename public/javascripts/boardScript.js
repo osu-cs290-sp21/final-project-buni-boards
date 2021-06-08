@@ -2,7 +2,7 @@
 let boardName = document.getElementById('boardName')
 let modelName = boardName.textContent.replace(" ", "")
 console.log("board:", modelName)
-const MODEL_PATH = "/javascripts/" + modelName + ".glb";
+const MODEL_PATH = "/3Dmodels/" + modelName + ".glb";
 console.log(MODEL_PATH)
 const DRAG_NOTICE = document.getElementById('js-drag-notice');
 var surfboard;

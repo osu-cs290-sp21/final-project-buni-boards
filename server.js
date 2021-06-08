@@ -37,7 +37,6 @@ hbs.handlebars.registerHelper('isFoot', function (value){
 })
 
 
-
 app.get('/', function(req, res, next){
   res.status(200).render('homepage');
 })
