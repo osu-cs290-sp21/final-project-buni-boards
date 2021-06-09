@@ -42,7 +42,6 @@ const material2 = new THREE.LineBasicMaterial( { color: 0xffffff } );
 const points2 = []; 
 points2.push( new THREE.Vector3(-0.5, -2.1, 0 ) ); 
 points2.push( new THREE.Vector3( 0.5, -2.1, 0 ) ); 
-// points.push( new THREE.Vector3( 10, 0, 0 ) ); 
 const geometry2 = new THREE.BufferGeometry().setFromPoints( points2 );
 const line2 = new THREE.Line( geometry2, material2 )
 line2.name = 'x-line'
@@ -110,8 +109,6 @@ function updateWidth(width) {
   scene.add( mesh2 );
 }); 
 }
-
-/*test*/
 
 
 const INITIAL_MTL = new THREE.MeshPhongMaterial( { color: 0xf1f1f1, shininess: 10 } );
@@ -242,9 +239,22 @@ if (initRotate <= 120) {
   }
 }
 
+function add_materials (d_mtl, b_mtl) {
+  surfboard.traverse((o) => {
+    if ((o.isMesh && o.nameID != null)) {
+      if (o.nameID == 'bottom') {
+          console.log('bottomFirst')
+           o.material = b_mtl;
+        }
+      if (o.nameID == 'deck'){
+        console.log('deckFirst')
+        o.material = d_mtl;
+      }
+    }
+  });
+}
+
 /* ===========================End Three JS=========================== */
-// var Fraction = require('fractional').Fraction
-// console.log((new Fraction(7,3)).multiply(new Fraction(1,2)).toString())
 let contour = document.getElementById('contour')
 let fins = document.getElementById('fins')
 let rockers = document.getElementById('rocker')
@@ -256,13 +266,8 @@ var userWidth = document.getElementById('width')
 var userThickness = document.getElementById('thickness')
 
 
-/* test */
 var ready = document.getElementById('ready')
 ready.addEventListener('click', event =>{
-  console.log('deck: ', deckColor)
-
-  console.log('yes')
-
   var bottom_mtl = new THREE.MeshPhongMaterial({
     color: parseInt('0x' + bottomColor.textContent),
     shininess: 10      
@@ -273,20 +278,8 @@ ready.addEventListener('click', event =>{
     shininess: 10      
   });
 
-  surfboard.traverse((o) => {
-    if ((o.isMesh && o.nameID != null)) {
-      if (o.nameID == 'bottom') {
-          console.log('bottomFirst')
-           o.material = bottom_mtl;
-        }
-      if (o.nameID == 'deck'){
-        console.log('deckFirst')
-        o.material = deck_mtl;
-      }
-    }
-  });
+  add_materials(deck_mtl, bottom_mtl);
 })
-/* test */
 
 let inchesToFeet = function(inches){
   let feet = Math.floor(inches / 12);
@@ -295,7 +288,6 @@ let inchesToFeet = function(inches){
   return feet + "'" + remainder
 }
 let property = document.querySelectorAll('.property');
-var selection;
 var saved_color = 'EFF2F2';
 
 property.forEach(item => {
@@ -411,11 +403,7 @@ else if (item.id == 'rocker'){
     item.childNodes[1].childNodes[3].addEventListener('click', event =>{
       rockers.textContent = item.childNodes[1].childNodes[3].id
     })
-    console.log("item:", item.childNodes[1].childNodes[3].id)
-    console.log("fins:" , rockers.textContent)
-    console.log('check: ', item.childNodes[1].childNodes[3].id == rockers.textContent)
     if (item.childNodes[1].childNodes[3].id == rockers.textContent){
-      console.log("inside check")
       document.getElementById(`${rockers.textContent}`).checked = true
     }
   })
@@ -441,7 +429,6 @@ else if (item.id == 'finish'){
  /*=======Colors========*/
 
 
-
 else if (item.id == 'colors'){
   clearScene()
   const dropButtons = document.querySelectorAll(".dropButton");
@@ -462,12 +449,9 @@ else if (item.id == 'colors'){
         const allColors = document.querySelectorAll(".color");
         for (const colortest of allColors) {
         colortest.addEventListener('click', function(e){
-          selection = colortest.parentElement.id
           let color = colors[parseInt(e.target.dataset.key)];
           let new_mtl;
           if (colortest.parentElement.id == 'deck'){
-            console.log('in deck')
-            console.log('color: ', color.color)
             saved_color = color.color
             deckColor.textContent = color.color
             var deck_mtl = new THREE.MeshPhongMaterial({
@@ -480,7 +464,6 @@ else if (item.id == 'colors'){
 
           }
           else if(colortest.parentElement.id == 'bottom') {
-            console.log('in bottom')
             bottomColor.textContent = color.color
             var bottom_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
@@ -501,20 +484,8 @@ else if (item.id == 'colors'){
             var deck_mtl = new THREE.MeshPhongMaterial({
               color: parseInt('0x' + color.color),
               shininess: 10});
-          }
-         
-          surfboard.traverse((o) => {
-          if ((o.isMesh && o.nameID != null)) {
-            if (o.nameID == 'bottom') {
-                console.log('bottomFirst')
-                 o.material = bottom_mtl;
-              }
-            if (o.nameID == 'deck'){
-              console.log('deckFirst')
-              o.material = deck_mtl;
-            }
-          }
-        });
+          }     
+          add_materials(deck_mtl, bottom_mtl)
         }); 
         const dropButtons = document.querySelectorAll(".dropButton");
         const dropDownColors = document.querySelector('.dropDownColors')
@@ -529,20 +500,19 @@ else if (item.id == 'colors'){
 function clearScene() {
   scene.remove(line)
   scene.remove(line2)
-  scene.remove(mesh)
+  let mesh1Object = scene.getObjectByName('length')
+  scene.remove(mesh1Object)
   let mesh2Object = scene.getObjectByName('width')
   scene.remove(mesh2Object)
 }
-
-
-  let closeButton = document.querySelector('.closeButton')
-  closeButton.addEventListener('click', event => {
-    removed = document.querySelector('.slideMenu')
-    removed.remove()
-    customizer.style.left = "0";
-    clearScene();
-  })
-  });
+let closeButton = document.querySelector('.closeButton')
+closeButton.addEventListener('click', event => {
+  removed = document.querySelector('.slideMenu')
+  removed.remove()
+  customizer.style.left = "0";
+  clearScene();
+})
+});
 });
 
 
@@ -702,16 +672,13 @@ const colors = [
 
 
 function buildColors(colors) {
-  console.log('bop ')
   let colorChooser = document.querySelectorAll('.colorChooser');
 
   colorChooser.forEach(section => {
     for (let [i, color] of colors.entries()) {
       let colorBlob = document.createElement('button');
       colorBlob.classList.add('color');
-  
-        colorBlob.style.background = "#" + color.color;
-  
+      colorBlob.style.background = "#" + color.color;
       colorBlob.setAttribute('data-key', i);
       section.append(colorBlob);
     }
@@ -790,8 +757,6 @@ modalAcceptButton.addEventListener('click', event => {
   console.log("userBoard: ", userBoard)
 
   var reqBody = JSON.stringify(userBoard)
-  console.log("== reqBody:", reqBody)
-  console.log("== typeof(reqBody):", typeof(reqBody))
 
   req.setRequestHeader('Content-Type', 'application/json')
 
