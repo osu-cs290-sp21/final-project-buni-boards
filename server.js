@@ -3,20 +3,6 @@ var express = require('express');
 var exphbs = require('express-handlebars');
 var boardData = require('./boardData.json')
 var fs = require('fs')
-console.log(boardData)
-
-//Import the mongoose module
-// var mongoose = require('mongoose');
-
-// //Set up default mongoose connection
-// var mongoDB = 'mongodb://127.0.0.1/my_database';
-// mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
-
-// //Get the default connection
-// var db = mongoose.connection;
-
-// //Bind connection to error event (to get notification of connection errors)
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -50,7 +36,6 @@ app.get('/contact-us', function(req, res, next) {
 })
 
 app.get('/my-boards', function(req, res, next) {
-  console.log("array size:", boardData.length)
   res.status(200).render('myboardspage', boardData);
 })
 
@@ -58,9 +43,8 @@ app.get('/build-a-buni/:model/:id', function(req, res, next){
   console.log('param: ',req.params.model )
   var boardName = req.params.boardName
   if (boards.includes(req.params.model)){
-    console.log("to string:", (req.params.model).replace("-", " "))
     var model = (req.params.model).replace("-", " ")
-  var id = req.params.id
+    var id = req.params.id
     res.status(200).render('boardBuilder', {
       boardModel: model, 
       creator: boardData[id].creator,
@@ -83,7 +67,6 @@ app.get('/build-a-buni/:model/:id', function(req, res, next){
 
 app.get('/build-a-buni/:model/', function(req, res, next){
   if (boards.includes(req.params.model)){
-    console.log("to string:", (req.params.model).replace("-", " "))
     var id = (req.params.model).replace("-", " ")
     res.status(200).render('boardBuilder', {
       boardModel: id, 
